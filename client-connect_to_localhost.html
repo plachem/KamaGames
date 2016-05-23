@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Робот</title>
+ </head>
+ <body>
+   <script type="text/JavaScript">
+     client = new WebSocket("ws://127.0.0.1:8080");
+     (function myLoop (i) {
+        setTimeout(function () {
+           var result = ['20x', '30x', '20x'][Math.floor(Math.random() * 3)]
+           client.send('127.0.0.1 ' + result);
+           //alert(result);
+           if (--i) myLoop(i);
+        }, 10000)
+     })(100);
+   </script>
+
+  <p>Робот. Отправляет серверу через WebSocket случайно выбранное сообщение 20x или 30x.</p>
+ </body>
